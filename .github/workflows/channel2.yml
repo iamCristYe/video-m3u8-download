@@ -30,7 +30,7 @@ jobs:
       run: |
         wget -O N_m3u8DL-RE.tar.gz https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.3.0-beta/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
         tar -xzf N_m3u8DL-RE.tar.gz
-        ./N_m3u8DL-RE --live-real-time-merge "https://ssai-variants.streaks.jp/v5/tver-simul-ntv/938232e586b34196b704a5839663984b/cb593b5eafbb4645907e979d757e1dd5/manifest/13df2e5de86b5ff0c5c3522d82e73a5fbf55aac1/pro-mt-174-11920/bfe8fb04-f048-4b47-9e77-c1ad767cdda8/0.m3u8?pdt=-10178&session=bfe8fb04-f048-4b47-9e77-c1ad767cdda8&vt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlZGdlIjoibnR2LWxpdmUtY2RuLnR2ZXIuanAiLCJvZmZzZXQiOjksInBkdCI6Ii0xMDE3OCJ9.Vk29oM17N9EXxwnGR7jTmM88KHE46GTsXDAX3P9ESTE" --save-name chunklist &
+        ./N_m3u8DL-RE --live-real-time-merge "https://d2lzm14wykwd6t.cloudfront.net/out/v1/f22f3d531e974d8a9de321b31d577e3e/index_5.m3u8" --save-name chunklist &
         # --live-keep-segments 
     
     - name: Run Python script
