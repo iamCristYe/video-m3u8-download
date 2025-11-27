@@ -5,7 +5,7 @@ import requests
 import subprocess
 import hashlib
 import threading
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, urljoin
 
 
 class M3U8TSToTG:
@@ -65,6 +65,27 @@ class M3U8TSToTG:
         filename = filename.replace("..", "_").replace("/", "_")
         return os.path.join(self.work_dir, filename)
 
+    def indexed_ts_filename(self, ts_url: str, index: int, total: int) -> str:
+        """Generate a zero-padded, ordered filename for a TS segment.
+
+        Prefixing with the playlist order index ensures filesystem sorting matches
+        playlist order when merging.
+        """
+        parsed = urlparse(ts_url)
+        base = os.path.basename(parsed.path)
+        base = unquote(base)
+        if not base.endswith(".ts"):
+            base += ".ts"
+        if len(base) > 80:
+            hashed = hashlib.md5(ts_url.encode()).hexdigest()[:8]
+            base = f"segment_{hashed}.ts"
+        base = base.replace("..", "_").replace("/", "_")
+
+        digits = max(3, len(str(total)))
+        prefix = f"{index:0{digits}d}_"
+        filename = prefix + base
+        return os.path.join(self.work_dir, filename)
+
     def download_new_segments(self) -> bool:
         """Check M3U8 and download new .ts segments."""
         try:
@@ -74,15 +95,63 @@ class M3U8TSToTG:
             print(f"⚠️ Failed to fetch playlist: {e}")
             return False
 
-        lines = r.text.splitlines()
+        text = r.text
+        lines = text.splitlines()
+
+        # Detect master playlist (variants) and pick the highest-bandwidth variant
+        if any(l.strip().startswith("#EXT-X-STREAM-INF") for l in lines):
+            variants = []  # list of dicts: {"bandwidth":int, "resolution":(w,h), "uri":str}
+            it = iter(lines)
+            for line in it:
+                if line.strip().startswith("#EXT-X-STREAM-INF"):
+                    attrs = line.split(":", 1)[1] if ":" in line else ""
+                    attr_map = {}
+                    for part in attrs.split(","):
+                        if "=" in part:
+                            k, v = part.split("=", 1)
+                            attr_map[k.strip().upper()] = v.strip()
+                    # next non-empty, non-comment line should be the variant URI
+                    uri = None
+                    for next_line in it:
+                        nl = next_line.strip()
+                        if nl and not nl.startswith("#"):
+                            uri = nl
+                            break
+                    if not uri:
+                        continue
+                    bw = int(attr_map.get("BANDWIDTH", "0")) if attr_map.get("BANDWIDTH") else 0
+                    res = attr_map.get("RESOLUTION")
+                    res_tuple = None
+                    if res and "x" in res:
+                        try:
+                            w, h = res.split("x", 1)
+                            res_tuple = (int(w), int(h))
+                        except Exception:
+                            res_tuple = None
+                    variants.append({"bandwidth": bw, "resolution": res_tuple, "uri": uri})
+
+            # prefer by bandwidth, then resolution area
+            if variants:
+                variants.sort(key=lambda v: (v.get("bandwidth", 0), (v.get("resolution", (0,0))[0] * v.get("resolution", (0,0))[1] if v.get("resolution") else 0)), reverse=True)
+                best = variants[0]["uri"]
+                variant_url = best if best.startswith("http") else urljoin(self.m3u8_url, best)
+                try:
+                    rv = requests.get(variant_url, timeout=10)
+                    rv.raise_for_status()
+                    lines = rv.text.splitlines()
+                except Exception as e:
+                    print(f"⚠️ Failed to fetch variant playlist {variant_url}: {e}")
+                    return False
+
         ts_urls = [line.strip() for line in lines if line and not line.startswith("#")]
         base_url = self.m3u8_url.rsplit("/", 1)[0]
 
         new_files = 0
 
-        for ts_name in ts_urls:
-            ts_url = ts_name if ts_name.startswith("http") else f"{base_url}/{ts_name}"
-            ts_file = self.safe_ts_filename(ts_url)
+        total = len(ts_urls)
+        for idx, ts_name in enumerate(ts_urls, start=1):
+            ts_url = ts_name if ts_name.startswith("http") else urljoin(self.m3u8_url, ts_name)
+            ts_file = self.indexed_ts_filename(ts_url, idx, total)
 
             with self.lock:
                 if ts_file in self.downloaded_ts:
