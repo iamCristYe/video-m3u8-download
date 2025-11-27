@@ -35,6 +35,7 @@ jobs:
     
     - name: Run Python script
       run: |
+        pip install requests
         ls
         python send_Telegram.py
       env:
