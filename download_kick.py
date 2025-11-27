@@ -45,6 +45,6 @@ if __name__ == "__main__":
         telegram_chat_id=TELEGRAM_CHAT_ID,
         caption_prefix="kick",
         work_dir=".",
-        merge_group_size=15,
+        merge_group_size=8,
     )
     m3u8_processor.run()
