@@ -27,8 +27,8 @@ jobs:
         pip install yt-dlp
         ffmpeg -version
 
-     - name: Download N_m3u8DL-RE and Stream
-       run: |
+    - name: Download kick
+      run: |
          yt-dlp https://kick.com/tsutsuiayame -o kick.mp4
     
     - name: Run Python script
