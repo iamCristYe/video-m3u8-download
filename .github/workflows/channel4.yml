@@ -37,7 +37,7 @@ jobs:
       run: |
         pip install requests
         ls
-        python send_Telegram.py
+        python download_kick.py
       env:
         TELEGRAM_CHAT_ID: "-1002477355148"
         TELEGRAM_BOT_TOKEN: ${{ secrets.bot_token }}
