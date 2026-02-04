@@ -22,7 +22,7 @@ FFMPEG_COMMAND = [
     "-decryption_key",
     "54506ff0bc8e6c75ed657efed5e70d3a",
     "-i",
-    "chunklist.ts",
+    "chunklist.mp4",
     "-map",
     "0:v",
     "-map",
