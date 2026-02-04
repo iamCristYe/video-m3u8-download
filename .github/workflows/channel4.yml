@@ -40,4 +40,4 @@ jobs:
         python send_Telegram.py
       env:
         TELEGRAM_CHAT_ID: "-1002477355148"
-        TELEGRAM_BOT_TOKEN: ${{ secrets.bot_token }}
+        BOT_TOKEN: ${{ secrets.bot_token }}
