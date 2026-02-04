@@ -27,7 +27,7 @@ def retry_command_until_success(command, max_retries=10, retry_interval=5):
 if __name__ == "__main__":
     while True:
         try:
-            m3u8_url = "https://fa723fc1b171.us-west-2.playback.live-video.net/api/video/v1/us-west-2.196233775518.channel.bgaViscsscMD.m3u8?browser_family=chrome&browser_version=142.0&cdm=wv&os_name=Windows&os_version=NT%2010.0&platform=web&player_backend=mediaplayer&player_version=1.45.0&supported_codecs=av1,h265,h264&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzM4NCJ9.eyJhd3M6Y2hhbm5lbC1hcm4iOiJhcm46YXdzOml2czp1cy13ZXN0LTI6MTk2MjMzNzc1NTE4OmNoYW5uZWwvYmdhVmlzY3NzY01EIiwiYXdzOmFjY2Vzcy1jb250cm9sLWFsbG93LW9yaWdpbiI6Imh0dHBzOi8va2ljay5jb20saHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20saHR0cHM6Ly8qLmtpY2subGl2ZSxodHRwczovL3BsYXllci5raWNrLmNvbSxodHRwczovL2FkbWluLmtpY2suY29tLGh0dHBzOi8vYmV0YS5raWNrLmNvbSxodHRwczovL25leHQua2ljay5jb20saHR0cHM6Ly9kYXNoYm9hcmQua2ljay5jb20saHR0cHM6Ly8qLnByZXZpZXcua2ljay5jb20saHR0cHM6Ly94Ym94LmtpY2suY29tLGh0dHBzOi8vcGxheXN0YXRpb24ua2ljay5jb20iLCJhd3M6c3RyaWN0LW9yaWdpbi1lbmZvcmNlbWVudCI6ZmFsc2UsImV4cCI6MTc2NDIzNTEyNn0.aOkfd-BfJAKsdDsf4lzKbM1g1V0ztQKYfdJm6hoG7Y_WQfs3THPBVVMH4WQSMWtkGuaF9nl_CvARYqbX1lACKPxHMqXaT7lXWLch_Yk_mFQyWEfBNxic81MLK5av3tcD"
+            m3u8_url = "https://live.mmf.moe/room/0204/index.m3u8"
             break
         except:
             time.sleep(5)
