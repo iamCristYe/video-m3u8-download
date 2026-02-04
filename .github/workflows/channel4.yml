@@ -37,7 +37,7 @@ jobs:
       run: |
         pip install requests
         pip install pywidevine
-        python send_Telegram.py
+        python send_Telegram_sc.py
       env:
         TELEGRAM_CHAT_ID: "-1002477355148"
         BOT_TOKEN: ${{ secrets.bot_token }}
