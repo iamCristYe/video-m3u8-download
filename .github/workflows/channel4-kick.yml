@@ -26,7 +26,7 @@ jobs:
         sudo apt install ffmpeg
         pip install requests
         pip install yt-dlp
-        pip install "yt-dlp[default,curl-cffi]
+        pip install "yt-dlp[default,curl-cffi]"
         ls
         ffmpeg -version
 
