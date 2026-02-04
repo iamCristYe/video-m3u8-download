@@ -24,6 +24,10 @@ jobs:
       run: |
         sudo apt update
         sudo apt install ffmpeg
+        pip install requests
+        pip install yt-dlp
+        pip install "yt-dlp[default,curl-cffi]
+        ls
         ffmpeg -version
 
     - name: Download kick
@@ -32,10 +36,6 @@ jobs:
     
     - name: Run Python script
       run: |
-        pip install requests
-        pip install yt-dlp
-        pip install "yt-dlp[default,curl-cffi]
-        ls
         python download_kick.py
       env:
         TELEGRAM_CHAT_ID: "-1002477355148"
