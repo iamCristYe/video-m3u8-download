@@ -1,4 +1,14 @@
-(venv) c@GCNI-T14p:~/deprecated-lemino-widevine-crack$ python P5/P5_get_key.py 
+10:29:25.570 WARN : fMP4 is detected, binary merging is automatically enabled
+10:29:25.610 WARN : Type: cbcs
+10:29:25.610 WARN : PSSH(WV): EhDkLEqaqbA2TJiIwVs7b6upIiRleUpoYzNObGRFbGtJam9pTmpNNE9ETXdPVEV5TXpFeE1pSjk4AEjzxombBg==
+10:29:25.610 WARN : KID: e42c4a9aa9b0364c9888c15b3b6faba9
+10:29:25.610 WARN : Reading media info...
+10:29:25.676 INFO : [0x1]: Video, h264 (avc1), 1920x1080
+10:29:25.722 WARN : Type: cbcs
+10:29:25.722 WARN : PSSH(WV): EhARimd76cQ4jKGKh8fgD1jMIiRleUpoYzNObGRFbGtJam9pTmpNNE9ETXdPVEV5TXpFeE1pSjk4AEjzxombBg==
+10:29:25.722 WARN : KID: 118a677be9c4388ca18a87c7e00f58cc
+10:29:25.722 WARN : Reading media info...
+10:29:25.768 INFO : [0x1]: Audio, aac (mp4a)
 [SIGNING] 00000000000000000000000000000000:0e1a8ba03caf4c982982de2f9f210ce3ccdb58abe5f680f64da4d59083bc42edb00f2913f6b3070663e2e281ac208940cdadd505a8c6093f07ca29ff093291c1
 [CONTENT] aedb54745de93dbb9f040566d39a7ec4:fc0e91a836137e099d043272e8d1b408
 [CONTENT] c1f57c92b62d3cc689f0b2584677e5b2:e7cdc22ed9becc83ae9410469d3c8a0f
