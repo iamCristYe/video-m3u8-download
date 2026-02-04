@@ -1,4 +1,4 @@
-name: channel3
+name: channel4-sc
 
 on:
   # schedule:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  channel3:
+  channel4-sc:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,14 +30,14 @@ jobs:
       run: |
         wget -O N_m3u8DL-RE.tar.gz https://github.com/nilaoda/N_m3u8DL-RE/releases/download/v0.3.0-beta/N_m3u8DL-RE_v0.3.0-beta_linux-x64_20241203.tar.gz
         tar -xzf N_m3u8DL-RE.tar.gz
-        ./N_m3u8DL-RE --live-real-time-merge "https://fastly.live.brightcove.com/6388309123112/ap-northeast-1/6160987587001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0Ijoibm1pbHFkLmVncmVzcy5pdjNqZDgiLCJhY2NvdW50X2lkIjoiNjE2MDk4NzU4NzAwMSIsImVobiI6ImZhc3RseS5saXZlLmJyaWdodGNvdmUuY29tIiwiaXNzIjoiYmxpdmUtcGxheWJhY2stc291cmNlLWFwaSIsInN1YiI6InBhdGhtYXB0b2tlbiIsImF1ZCI6WyI2MTYwOTg3NTg3MDAxIl0sImp0aSI6IjYzODgzMDkxMjMxMTIifQ.oBkUeWhHHIUp9vi0IvfRp1bLCia_3fU_-hhbjL8I1FI/chunklist__0.m3u8" --save-name chunklist &
+        ./N_m3u8DL-RE --live-real-time-merge "https://fastly.live.brightcove.com/6388309123112/ap-northeast-1/6160987587001/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0Ijoibm1pbHFkLmVncmVzcy5pdjNqZDgiLCJhY2NvdW50X2lkIjoiNjE2MDk4NzU4NzAwMSIsImVobiI6ImZhc3RseS5saXZlLmJyaWdodGNvdmUuY29tIiwiaXNzIjoiYmxpdmUtcGxheWJhY2stc291cmNlLWFwaSIsInN1YiI6InBhdGhtYXB0b2tlbiIsImF1ZCI6WyI2MTYwOTg3NTg3MDAxIl0sImp0aSI6IjYzODgzMDkxMjMxMTIifQ.oBkUeWhHHIUp9vi0IvfRp1bLCia_3fU_-hhbjL8I1FI/playlist-hls.m3u8" --save-name chunklist &
         # --live-keep-segments 
     
     - name: Run Python script
       run: |
         pip install requests
         pip install pywidevine
-        python send_Telegram.py
+        python send_Telegram_sc.py
       env:
-        channel_id: "-1002290539654"
+        TELEGRAM_CHAT_ID: "-1002290539654"
         bot_token: ${{ secrets.bot_token }}
