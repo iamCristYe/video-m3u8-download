@@ -1,4 +1,4 @@
-name: channel4-sc
+name: channel3-sc
 
 on:
   # schedule:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  channel4-sc:
+  channel3-sc:
     runs-on: ubuntu-latest
 
     steps:
