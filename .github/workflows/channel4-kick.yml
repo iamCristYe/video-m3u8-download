@@ -30,13 +30,13 @@ jobs:
         ls
         ffmpeg -version
 
-    #- name: Download kick
-    #  run: |
-    #     yt-dlp "https://live.mmf.moe/room/0204/index.m3u8" -o kick.mp4 &
+    - name: Download kick
+      run: |
+         yt-dlp "https://kick.com/tsutsuiayame" -o kick &
     
     - name: Run Python script
       run: |
-        python download_kick.py
+        python kick.py
       env:
         TELEGRAM_CHAT_ID: "-1002477355148"
         TELEGRAM_BOT_TOKEN: ${{ secrets.bot_token }}
