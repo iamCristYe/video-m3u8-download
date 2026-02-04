@@ -19,8 +19,8 @@ SENT_JSON_FILE = "sent.json"
 # FFmpeg 命令
 FFMPEG_COMMAND = [
     "ffmpeg",
-    "-decryption_key",
-    "54506ff0bc8e6c75ed657efed5e70d3a",
+    #"-decryption_key",
+    #"54506ff0bc8e6c75ed657efed5e70d3a",
     "-i",
     "chunklist.mp4",
     "-c",
