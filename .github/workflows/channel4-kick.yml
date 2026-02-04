@@ -32,7 +32,7 @@ jobs:
 
     - name: Download kick
       run: |
-         yt-dlp "https://kick.com/tsutsuiayame" -o kick &
+         yt-dlp "https://plwb00.live.weibo.com/alicdn/5262645072495741.m3u8" -o kick &
     
     - name: Run Python script
       run: |
