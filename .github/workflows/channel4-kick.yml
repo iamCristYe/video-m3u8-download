@@ -30,9 +30,9 @@ jobs:
         ls
         ffmpeg -version
 
-    - name: Download kick
-      run: |
-         yt-dlp "https://live.mmf.moe/room/0204/index.m3u8" -o kick.mp4 &
+    #- name: Download kick
+    #  run: |
+    #     yt-dlp "https://live.mmf.moe/room/0204/index.m3u8" -o kick.mp4 &
     
     - name: Run Python script
       run: |
