@@ -9,8 +9,8 @@ import subprocess
 # https://www.showroom-live.com/api/live/streaming_url?room_id=190685&abr_available=1
 
 # Telegram 配置
-TELEGRAM_BOT_TOKEN = os.environ["bot_token"]
-TELEGRAM_CHAT_ID = os.environ["channel_id"]
+TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
+TELEGRAM_CHAT_ID = os.environ["TELEGRAM_CHAT_ID"]
 
 # JSON 文件存储每个文件的状态（首次出现时间 + 是否已发送）
 SENT_JSON_FILE = "sent.json"
