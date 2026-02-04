@@ -23,8 +23,7 @@ jobs:
     - name: Download FFmpeg
       run: |
         sudo apt update
-        sudo apt install ffmpeg 
-        pip install yt-dlp
+        sudo apt install ffmpeg
         ffmpeg -version
 
     - name: Download kick
@@ -34,6 +33,7 @@ jobs:
     - name: Run Python script
       run: |
         pip install requests
+        pip install "yt-dlp[default,curl-cffi]
         ls
         python download_kick.py
       env:
