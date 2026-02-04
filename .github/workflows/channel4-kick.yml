@@ -33,6 +33,7 @@ jobs:
     - name: Run Python script
       run: |
         pip install requests
+        pip install yt-dlp
         pip install "yt-dlp[default,curl-cffi]
         ls
         python download_kick.py
